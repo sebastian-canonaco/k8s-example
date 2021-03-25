@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: node
-        image: node-app:1.7.0
+        image: node-app:2
+        imagePullPolicy: Never
         resources:
           limits:
             memory: "128Mi"
