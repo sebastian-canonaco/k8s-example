@@ -2,7 +2,7 @@
 
 You will need a Docker and Kubernetes Engine installed on your machine to run it locally 
 - Docker Desktop
-- MiniKube
+- MiniKube (in this README we will use minikube, but you could use only Docket Desktop)
 - Virtual Box
 
 ###1- Minikube config
@@ -52,6 +52,9 @@ Now go to k8s-example/node directory with the Dockerfile and build the image of 
 ```sh
 docker build . -t node-app:1
 ```
+Keep in mind that if you already build an image with version 1, you'll need to build another one with version 2
+and so forth (at least in my case if I make changes to the node app, it wouldn't update the image with the same
+version number)
 
 ### 4- Node deployment config
 
@@ -70,18 +73,19 @@ kubectl delete -f .
 
 ### 5- Test
 
+If you are using minikube, you'll probably need a couple more steps
+
 Execute this commands to get the pods names for the node pods 
 
 ```sh
-kubectl get pods
+minikube tunnel
 ```
 
 Take one of the node names and replace POD_NAME in the next command
 
 ```sh
-kubectl port-forward POD_NAME 3001 3001
+kubectl get services
 ```
+You need the External Ip address for node-service, then open a browser window and complete the url
 
-After that we need to open a browser window and go to the url
-
-http://localhost:3001/persons
+http://EXTERNAL-IP:3001/persons
