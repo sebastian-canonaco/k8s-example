@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: node-app:2
+        image: node-app:1
         imagePullPolicy: Never
         resources:
           limits:
@@ -77,7 +77,7 @@ spec:
   selector:
     app: node
   ports:
-    - port: 8001
+    - port: 3001
       targetPort: 3001
       protocol: TCP
   type: LoadBalancer
